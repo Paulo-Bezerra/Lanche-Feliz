@@ -1,7 +1,9 @@
 package pkg_telas;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -56,5 +58,22 @@ public class CadastroCliente  extends Conexao{
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao remover");
         }
+    }
+    
+    public int quantidadeCliente(){
+        ArrayList <Cliente> lista = new ArrayList();
+        String sql = "SELECT * FROM cliente";
+        int count = 0;
+        conectar();
+        
+        try {
+            ResultSet resultado = estado.executeQuery(sql);
+            while (resultado.next()){
+                count++;
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar");
+        }
+        return count++;
     }
 }
