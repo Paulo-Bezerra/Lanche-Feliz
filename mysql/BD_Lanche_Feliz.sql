@@ -2,33 +2,36 @@ CREATE DATABASE bar;
 
 USE bar;
 
+CREATE TABLE alimento (  
+	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	decricao TEXT
+);
+
+CREATE TABLE cardapio (  
+	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	decricao TEXT
+);
+
+CREATE TABLE alim_card (  
+	id_alimento  INT,  
+	id_cardapio  INT,  
+	PRIMARY KEY (id_alimento, id_cardapio),  
+	FOREIGN KEY (id_alimento) REFERENCES alimento (id),  
+	FOREIGN KEY (id_cardapio) REFERENCES cardapio (id) 
+);
+
 CREATE TABLE cliente(
-	cpf varchar(14) PRIMARY KEY NOT NULL,
-    nome varchar(255),
-    email varchar(255)
+	cpf VARCHAR (14) NOT NULL PRIMARY KEY,
+    nome VARCHAR (255) NOT NULL,
+    email VARCHAR (255),
+    id_cardapio INT,
+    FOREIGN KEY (id_cardapio) REFERENCES cardapio (id)
 );
 
-CREATE TABLE categoria(
-	id_categoria INT(5) PRIMARY KEY NOT NULL,
-    info_cate TEXT
-);
+SELECT * FROM cardapio;
 
-CREATE TABLE cardapio(
-	id_Cardapio int(10) auto_increment not null primary key,
-    nome varchar(100),
-    tipo varchar(100),
-    id_categoria int,
-    CONSTRAINT fk_CateCarda FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria)
-);
+SELECT * FROM alimento;
 
-CREATE TABLE estoque(
-	id_estoque int(10) auto_increment not null primary key,
-    quantidade int(10),
-    data_validade date,
-    id_cardapio int,
-    CONSTRAINT fk_CardaEst FOREIGN KEY (id_cardapio) REFERENCES cardapio(id_cardapio)
-);
+SELECT * FROM alim_card;
 
-select * from cliente;
-
-
+SELECT * FROM cliente;
