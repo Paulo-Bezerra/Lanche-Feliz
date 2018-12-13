@@ -1,4 +1,4 @@
-package pkg_telas;
+package pkg_classes;
 
 public class Cliente {
     

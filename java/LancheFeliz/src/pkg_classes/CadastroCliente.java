@@ -1,4 +1,4 @@
-package pkg_telas;
+package pkg_classes;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
