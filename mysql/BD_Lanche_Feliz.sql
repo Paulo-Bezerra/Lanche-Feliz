@@ -21,10 +21,11 @@ CREATE TABLE alim_card (
 );
 
 CREATE TABLE cliente(
-	cpf VARCHAR (14) NOT NULL PRIMARY KEY,
+	cpf VARCHAR (14) NOT NULL,
     nome VARCHAR (50) NOT NULL,
-    email VARCHAR (50),
+    email VARCHAR (50) NOT NULL,
     id_cardapio INT,
+	PRIMARY KEY (cpf, email),
     FOREIGN KEY (id_cardapio) REFERENCES cardapio (id)
 );
 
