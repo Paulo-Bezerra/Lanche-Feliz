@@ -1,10 +1,11 @@
-package pkg_classes;
+package pkg_conexoes;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import pkg_classes.Cliente;
 
 /**
  *

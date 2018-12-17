@@ -1,4 +1,4 @@
-package pkg_classes;
+package pkg_conexoes;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

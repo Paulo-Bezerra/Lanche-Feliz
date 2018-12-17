@@ -5,7 +5,7 @@
  */
 package pkg_telas;
 
-import pkg_classes.CadastroCliente;
+import pkg_conexoes.CadastroCliente;
 import java.awt.CardLayout;
 import java.awt.Frame;
 import javax.swing.JFrame;
