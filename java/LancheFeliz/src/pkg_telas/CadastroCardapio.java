@@ -84,25 +84,4 @@ public class CadastroCardapio extends Conexao {
         }
         return lista;
     }
-
-    public ArrayList <Cardapio> CardapioSemanal (){
-        ArrayList <Cardapio> lista = new ArrayList();
-        String sql = "SELECT * FROM cardapio";
-        conectar();
-        ResultSet resultado;
-        
-        try {
-            resultado = estado.executeQuery(sql);
-            while (resultado.next()){
-                Cardapio c = new Cardapio();
-                c.setId(resultado.getInt("id"));
-                c.setNome(resultado.getString("nome"));
-                c.setDescricao(resultado.getString("decricao"));
-                lista.add(c);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao consulta");
-        }
-        return lista;
-    }
 }
