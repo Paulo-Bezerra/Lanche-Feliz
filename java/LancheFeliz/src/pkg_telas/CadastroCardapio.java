@@ -16,7 +16,7 @@ public class CadastroCardapio extends Conexao {
     
     
     public void CadastrarProduto(String nome, String descricao){
-        String sql = "INSERT INTO  cardapio (id, nome, decricao) VALUES (DEFAULT, ?, ?)";
+        String sql = "INSERT INTO  cardapio (id, nome, descricao) VALUES (DEFAULT, ?, ?)";
         PreparedStatement estado1;
         conectar();
         try {
@@ -76,7 +76,7 @@ public class CadastroCardapio extends Conexao {
                 Cardapio c = new Cardapio();
                 c.setId(resultado.getInt("id"));
                 c.setNome(resultado.getString("nome"));
-                c.setDescricao(resultado.getString("decricao"));
+                c.setDescricao(resultado.getString("descricao"));
                 lista.add(c);
             }
         } catch (SQLException ex) {

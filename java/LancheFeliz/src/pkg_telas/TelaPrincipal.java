@@ -7,7 +7,18 @@ package pkg_telas;
 
 import java.awt.CardLayout;
 import java.awt.Frame;
+import java.awt.HeadlessException;
+import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,15 +31,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
      * Creates new form TelaPrincipal
      */
     
+    String alimento;
+    int alimentoID;
+    
     DefaultTableModel modeloCardapio;
     DefaultTableModel modeloCardapioSamanal;
     DefaultTableModel modeloCliente;
+    DefaultTableModel modeloAlimento;
+    DefaultTableModel modeloOpcao;
+    DefaultTableModel modeloSelecao;
     
     public TelaPrincipal() {
         initComponents();
         modeloCardapio = (DefaultTableModel) jTable4.getModel();
         modeloCliente = (DefaultTableModel) jTable3.getModel();
         modeloCardapioSamanal = (DefaultTableModel) tblCardapioSemanal.getModel();
+        modeloAlimento = (DefaultTableModel) jTable2.getModel();
+        modeloOpcao = (DefaultTableModel) jTable5.getModel();
+        modeloSelecao = (DefaultTableModel) jTable6.getModel();
     }
 
     /**
@@ -135,8 +155,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jPanel15 = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel32 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
@@ -873,25 +891,40 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel12.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 153, 372, 117));
 
         jLabel35.setText("Alimentos");
-        jPanel12.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 288, 169, -1));
+        jLabel35.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jLabel35MouseMoved(evt);
+            }
+        });
+        jPanel12.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 288, 370, -1));
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "NOME"
+                "ID", "OPÇÕES"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        jTable5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable5MouseClicked(evt);
+            }
+        });
         jScrollPane11.setViewportView(jTable5);
+        if (jTable5.getColumnModel().getColumnCount() > 0) {
+            jTable5.getColumnModel().getColumn(0).setMinWidth(0);
+            jTable5.getColumnModel().getColumn(0).setPreferredWidth(0);
+            jTable5.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
 
         jPanel12.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 309, 141, 233));
 
@@ -904,6 +937,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel12.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, -1, -1));
 
         jButton11.setText("←");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
         jPanel12.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 510, -1, -1));
 
         jTable6.setModel(new javax.swing.table.DefaultTableModel(
@@ -911,7 +949,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "NOME"
+                "SELEÇÃO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -920,6 +958,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTable6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable6MouseClicked(evt);
             }
         });
         jScrollPane12.setViewportView(jTable6);
@@ -1004,20 +1047,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID - Produto", "Nome", "Tipo", "Categoria", "Quantidade"
+                "ID", "NOME", "DESCRIÇÃO"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
         jScrollPane3.setViewportView(jTable2);
 
         jButton7.setText("Visualizar");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -1054,9 +1094,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel30.setText("Cadastrar alimento");
 
-        jLabel31.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
-        jLabel31.setText("ID");
-
         jLabel32.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         jLabel32.setText("Nome");
 
@@ -1086,18 +1123,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel15Layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel15Layout.createSequentialGroup()
                                 .addComponent(jLabel36)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel15Layout.createSequentialGroup()
-                                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel31)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(50, 50, 50)
-                                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane1))
+                                .addGap(0, 161, Short.MAX_VALUE))
+                            .addComponent(jTextField2))
                         .addGap(50, 50, 50)))
                 .addContainerGap())
             .addGroup(jPanel15Layout.createSequentialGroup()
@@ -1110,15 +1141,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel30)
-                .addGap(26, 26, 26)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel31)
-                    .addComponent(jLabel32))
+                .addGap(30, 30, 30)
+                .addComponent(jLabel32)
+                .addGap(18, 18, 18)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
                 .addComponent(jLabel36)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1296,7 +1323,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        CadastroAlimento ca = new CadastroAlimento();
+        ca.Cadastrar(jTextField2.getText(), jTextArea1.getText());
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1331,6 +1360,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         CadastroCardapio c =  new CadastroCardapio();
         c.CadastrarProduto(jTextField4.getText(), jTextArea4.getText());
+        
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
@@ -1338,8 +1369,41 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
+        modeloSelecao.addRow(new Object[] {modeloOpcao.getValueAt(jTable5.getSelectedRow(), jTable5.getSelectedColumn()).toString()});
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        
+        modeloAlimento.setNumRows(0);
+        CadastroAlimento cadastroAlimento = new CadastroAlimento();
+   
+        for (Alimento alimento : cadastroAlimento.Consultar()) {
+            modeloAlimento.addRow(new Object [] {alimento.getId(), alimento.getNome(), alimento.getDescricao()});
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jLabel35MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel35MouseMoved
+      
+        modeloOpcao.setNumRows(0);
+        CadastroAlimento c = new CadastroAlimento();
+        
+        for (Alimento alimento : c.Consultar()) {
+            Alimento a = new Alimento();
+            modeloOpcao.addRow(new Object [] {alimento.getNome()});
+            a.getId();
+        }
+    }//GEN-LAST:event_jLabel35MouseMoved
+
+    private void jTable5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable5MouseClicked
+    }//GEN-LAST:event_jTable5MouseClicked
+
+    private void jTable6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable6MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable6MouseClicked
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        modeloSelecao.removeRow(jTable6.getSelectedRow());
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1422,7 +1486,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
@@ -1472,7 +1535,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;

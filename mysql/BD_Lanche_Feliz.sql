@@ -4,13 +4,14 @@ USE bar;
 
 CREATE TABLE alimento (  
 	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    nome VARCHAR (30),
 	descricao TEXT
 );
 
 CREATE TABLE cardapio (  
 	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 	nome VARCHAR (30),
-	decricao TEXT
+	descricao TEXT
 );
 
 CREATE TABLE alim_card (  
@@ -42,6 +43,20 @@ INSERT INTO cardapio (id,nome) VALUES
 (DEFAULT, 'Galinhada'),
 (DEFAULT, 'Feijão tropero'),
 (DEFAULT, 'Feijão verde com carne');
+
+INSERT INTO alimento (id,nome, descricao) VALUES 
+(DEFAULT, 'Macarrão', 'comida'),
+(DEFAULT, 'Arroz', 'comida'),
+(DEFAULT, 'Feijão', 'comida'),
+(DEFAULT, 'Carne de Gado', 'comida'),
+(DEFAULT, 'Galinha', 'comida'),
+(DEFAULT, 'Frango', 'comida'),
+(DEFAULT, 'Cuzcus', 'comida'),
+(DEFAULT, 'Farinha', 'comida'),
+(DEFAULT, 'isso', 'comida'),
+(DEFAULT, 'Agua', 'comida'),
+(DEFAULT, 'Fruta', 'comida');
+
 
 INSERT INTO cliente (cpf, nome, email, id_cardapio) VALUES
 ('168.852.653-07', 'robeval', 'robsonhhhhh', 1),
@@ -80,4 +95,4 @@ SELECT * FROM alim_card;
 
 SELECT * FROM cliente;
 
-SELECT cardapio.id, cardapio.nome, cardapio.decricao, selecao.quantidade FROM cardapio, (SELECT id, COUNT(id) AS quantidade FROM cliente INNER JOIN cardapio ON cardapio.id = cliente.id_cardapio GROUP BY id ORDER BY COUNT(id) DESC LIMIT  5) AS selecao WHERE cardapio.id = selecao.id;
+SELECT cardapio.id, cardapio.nome, cardapio.descricao, selecao.quantidade FROM cardapio, (SELECT id, COUNT(id) AS quantidade FROM cliente INNER JOIN cardapio ON cardapio.id = cliente.id_cardapio GROUP BY id ORDER BY COUNT(id) DESC LIMIT  5) AS selecao WHERE cardapio.id = selecao.id;
