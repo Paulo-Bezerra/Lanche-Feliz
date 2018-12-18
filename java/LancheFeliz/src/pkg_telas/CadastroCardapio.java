@@ -88,9 +88,9 @@ public class CadastroCardapio extends Conexao {
         public ArrayList <CardapioSemanal> GerarCardapio(){
         ArrayList <CardapioSemanal> lista = new ArrayList();
         String sql = "SELECT cardapio.id, cardapio.nome, selecao.quantidade "
-                   + "FROM cardapio, (SELECT id, COUNT(id) AS quantidade FROM cliente INNER JOIN cardapio"
-                   + " ON cardapio.id = cliente.id_cardapio GROUP BY id ORDER BY COUNT(id) DESC LIMIT  5) AS selecao"
-                   + " WHERE cardapio.id = selecao.id";
+                   + "FROM cardapio, (SELECT id, COUNT(id) AS quantidade FROM cliente INNER JOIN cardapio "
+                   + "ON cardapio.id = cliente.id_cardapio GROUP BY id ORDER BY COUNT(id) DESC LIMIT  5) AS selecao "
+                   + "WHERE cardapio.id = selecao.id";
         conectar();
         ResultSet resultado;
         
