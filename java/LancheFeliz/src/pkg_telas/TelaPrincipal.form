@@ -880,15 +880,7 @@
                     <Component class="javax.swing.JComboBox" name="jComboBox1">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="7">
-                            <StringItem index="0" value="Card&#xe1;pio 1"/>
-                            <StringItem index="1" value="Card&#xe1;pio 2"/>
-                            <StringItem index="2" value="Card&#xe1;pio 3"/>
-                            <StringItem index="3" value="Card&#xe1;pio 4"/>
-                            <StringItem index="4" value="Card&#xe1;pio 5"/>
-                            <StringItem index="5" value="Card&#xe1;pio 6"/>
-                            <StringItem index="6" value="Card&#xe1;pio 7"/>
-                          </StringArray>
+                          <StringArray count="0"/>
                         </Property>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                           <Color id="Cursor em Forma de M&#xe3;o"/>
@@ -1886,6 +1878,9 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Remover"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>

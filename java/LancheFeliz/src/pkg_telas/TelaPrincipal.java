@@ -531,7 +531,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel28.setForeground(new java.awt.Color(76, 75, 86));
         jLabel28.setText("CPF");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cardápio 1", "Cardápio 2", "Cardápio 3", "Cardápio 4", "Cardápio 5", "Cardápio 6", "Cardápio 7" }));
         jComboBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel4.setText("Visualizar cardápios");
@@ -1167,6 +1166,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jButton6.setText("Remover");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -1266,6 +1270,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_cpfCRActionPerformed
 
     private void btnClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClienteMouseClicked
+        CadastroCardapio cadastroCardapio = new CadastroCardapio();
+        jComboBox1.removeAllItems();
+        for (Integer CardapioAtivo : cadastroCardapio.CardapioAtivos()) {
+            jComboBox1.addItem(CardapioAtivo.toString());
+        }
         CardLayout tela = (CardLayout) telaPadrao.getLayout();
         tela.show(telaPadrao, "telaCliente");
         
@@ -1404,6 +1413,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         modeloSelecao.removeRow(jTable6.getSelectedRow());
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments

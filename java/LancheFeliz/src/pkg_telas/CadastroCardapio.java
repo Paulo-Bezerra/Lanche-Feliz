@@ -85,7 +85,7 @@ public class CadastroCardapio extends Conexao {
         return lista;
     }
     
-        public ArrayList <CardapioSemanal> GerarCardapio(){
+    public ArrayList <CardapioSemanal> GerarCardapio(){
         ArrayList <CardapioSemanal> lista = new ArrayList();
         String sql = "SELECT cardapio.id, cardapio.nome, selecao.quantidade "
                    + "FROM cardapio, (SELECT id, COUNT(id) AS quantidade FROM cliente INNER JOIN cardapio "
@@ -108,4 +108,25 @@ public class CadastroCardapio extends Conexao {
         }
         return lista;
     }
+    
+    public ArrayList <Integer> CardapioAtivos() {
+        ArrayList <Integer> ids = new ArrayList();
+        String sql = "SELECT id FROM cardapio";
+        ResultSet resultado;
+        
+        conectar();
+        
+        try {
+            resultado = estado.executeQuery(sql);
+            while (resultado.next()) {
+                int id;
+                id = resultado.getInt("id");
+                ids.add(id);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao consultar");
+        }
+        
+        return ids;
+    } 
 }
