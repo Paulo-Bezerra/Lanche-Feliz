@@ -6,6 +6,7 @@
 package pkg_telas;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Frame;
 import java.awt.HeadlessException;
 import java.util.ArrayList;
@@ -65,8 +66,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnCliente = new javax.swing.JLabel();
         btnDashboard = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        btnAlimentos = new javax.swing.JLabel();
         btnCardapio = new javax.swing.JLabel();
+        lblAlimentos = new javax.swing.JLabel();
+        lblCardapio = new javax.swing.JLabel();
+        lblCliente = new javax.swing.JLabel();
+        lblDash = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
         telaPadrao = new javax.swing.JPanel();
         tPrincipal2 = new javax.swing.JPanel();
@@ -170,7 +175,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(230, 230, 240));
 
-        jPanel7.setBackground(new java.awt.Color(51, 51, 255));
+        jPanel7.setBackground(new java.awt.Color(0, 136, 237));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel16.setFont(new java.awt.Font("Segoe UI Black", 0, 20)); // NOI18N
@@ -189,10 +194,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnClienteMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnClienteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnClienteMouseExited(evt);
+            }
         });
 
         btnDashboard.setFont(new java.awt.Font("Segoe UI Semibold", 0, 22)); // NOI18N
-        btnDashboard.setForeground(new java.awt.Color(76, 75, 86));
+        btnDashboard.setForeground(new java.awt.Color(0, 136, 237));
         btnDashboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pkg_imagens/computer.png"))); // NOI18N
         btnDashboard.setText("    Dashboard");
         btnDashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -203,19 +214,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnDashboardMouseEntered(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnDashboardMouseExited(evt);
+            }
         });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 22)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(76, 75, 86));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pkg_imagens/warehouse.png"))); // NOI18N
-        jLabel2.setText("    Alimentos");
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAlimentos.setFont(new java.awt.Font("Segoe UI Semibold", 0, 22)); // NOI18N
+        btnAlimentos.setForeground(new java.awt.Color(76, 75, 86));
+        btnAlimentos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pkg_imagens/warehouse.png"))); // NOI18N
+        btnAlimentos.setText("    Alimentos");
+        btnAlimentos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAlimentos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                btnAlimentosMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel2MouseEntered(evt);
+                btnAlimentosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAlimentosMouseExited(evt);
             }
         });
 
@@ -228,33 +245,71 @@ public class TelaPrincipal extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCardapioMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCardapioMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCardapioMouseExited(evt);
+            }
         });
+
+        lblAlimentos.setBackground(new java.awt.Color(255, 255, 255));
+        lblAlimentos.setOpaque(true);
+
+        lblCardapio.setBackground(new java.awt.Color(255, 255, 255));
+        lblCardapio.setForeground(new java.awt.Color(255, 255, 255));
+        lblCardapio.setOpaque(true);
+
+        lblCliente.setBackground(new java.awt.Color(255, 255, 255));
+        lblCliente.setOpaque(true);
+
+        lblDash.setBackground(new java.awt.Color(0, 136, 237));
+        lblDash.setOpaque(true);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(1, 1, 1)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDashboard, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCardapio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblAlimentos, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAlimentos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblDash, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(btnDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDash, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCardapio, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAlimentos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAlimentos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         telaPadrao.setPreferredSize(new java.awt.Dimension(1018, 690));
@@ -1263,6 +1318,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnDashboardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboardMouseEntered
         // TODO add your handling code here:
+        btnDashboard.setForeground (new Color(0, 136, 237));
     }//GEN-LAST:event_btnDashboardMouseEntered
 
     private void cpfCRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfCRActionPerformed
@@ -1270,6 +1326,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_cpfCRActionPerformed
 
     private void btnClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClienteMouseClicked
+        
+        btnCliente.setForeground(new Color (0, 136, 237));
+        lblCliente.setBackground(new Color (0, 136, 237));
+        
+        lblDash.setBackground(Color.white);
+        lblAlimentos.setBackground(Color.white);
+        lblCardapio.setBackground(Color.white);
+        
+        btnDashboard.setForeground(new Color (51, 51, 55));
+        btnAlimentos.setForeground(new Color (51, 51, 55));
+        btnCardapio.setForeground(new Color (51, 51, 55));
+        
         CadastroCardapio cadastroCardapio = new CadastroCardapio();
         jComboBox1.removeAllItems();
         for (Integer CardapioAtivo : cadastroCardapio.CardapioAtivos()) {
@@ -1282,25 +1350,60 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboardMouseClicked
         // TODO add your handling code here:
+        btnDashboard.setForeground(new Color (0, 136, 237));
+        lblDash.setBackground(new Color (0, 136, 237));
+        
+        lblCliente.setBackground(Color.white);
+        lblAlimentos.setBackground(Color.white);
+        lblCardapio.setBackground(Color.white);
+        
+        btnCliente.setForeground(new Color (51, 51, 55));
+        btnAlimentos.setForeground(new Color (51, 51, 55));
+        btnCardapio.setForeground(new Color (51, 51, 55));
+        
         CardLayout tela = (CardLayout) telaPadrao.getLayout();
         tela.show(telaPadrao, "telaPrincipal");
     }//GEN-LAST:event_btnDashboardMouseClicked
 
     private void btnCardapioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCardapioMouseClicked
         // TODO add your handling code here:
+        btnCardapio.setForeground(new Color (0, 136, 237));
+        lblCardapio.setBackground(new Color (0, 136, 237));
+        
+        lblDash.setBackground(Color.white);
+        lblCliente.setBackground(Color.white);
+        lblAlimentos.setBackground(Color.white);
+        
+        btnDashboard.setForeground(new Color (51, 51, 55));
+        btnCliente.setForeground (new Color (51, 51, 55));
+        btnAlimentos.setForeground(new Color (51, 55, 55));
+        
         CardLayout tela = (CardLayout) telaPadrao.getLayout();
         tela.show(telaPadrao, "telaCardapio");
     }//GEN-LAST:event_btnCardapioMouseClicked
 
-    private void jLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseEntered
+    private void btnAlimentosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlimentosMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel2MouseEntered
+        btnAlimentos.setForeground(new Color(0, 136, 237));
+    }//GEN-LAST:event_btnAlimentosMouseEntered
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void btnAlimentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlimentosMouseClicked
         // TODO add your handling code here:
+        btnAlimentos.setForeground(new Color (0, 136, 237));
+        lblAlimentos.setBackground(new Color (0, 136, 237));
+        
+        lblDash.setBackground(Color.white);
+        lblCliente.setBackground(Color.white);
+        lblCardapio.setBackground(Color.white);
+        
+        btnDashboard.setForeground(new Color (51, 51, 55));
+        btnCliente.setForeground (new Color (51, 51, 55));
+        btnCardapio.setForeground(new Color (51, 51, 55));
+        
+        
         CardLayout tela = (CardLayout) telaPadrao.getLayout();
         tela.show(telaPadrao, "telaEstoque");
-    }//GEN-LAST:event_jLabel2MouseClicked
+    }//GEN-LAST:event_btnAlimentosMouseClicked
 
     private void removeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeActionPerformed
         CadastroCliente bar  = new CadastroCliente();
@@ -1418,6 +1521,52 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void btnClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClienteMouseEntered
+        // TODO add your handling code here:
+        btnCliente.setForeground(new Color(0, 136, 237));
+    }//GEN-LAST:event_btnClienteMouseEntered
+
+    private void btnClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClienteMouseExited
+        // TODO add your handling code here:
+        if(lblCliente.getBackground().equals(new Color (0, 136, 237))) {
+        btnCliente.setForeground(new Color(0,136,237));
+        } else {
+            btnCliente.setForeground(new Color(76, 75, 86));
+        }
+    }//GEN-LAST:event_btnClienteMouseExited
+
+    private void btnCardapioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCardapioMouseEntered
+        // TODO add your handling code here:
+        btnCardapio.setForeground (new Color(0, 136, 237));
+    }//GEN-LAST:event_btnCardapioMouseEntered
+
+    private void btnCardapioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCardapioMouseExited
+        // TODO add your handling code here:
+       if(lblCardapio.getBackground().equals(new Color (0, 136, 237))) {
+        btnCardapio.setForeground(new Color(0,136,237));
+        } else {
+            btnCardapio.setForeground(new Color(76, 75, 86));
+        }
+    }//GEN-LAST:event_btnCardapioMouseExited
+
+    private void btnAlimentosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlimentosMouseExited
+        // TODO add your handling code here:
+        if(lblAlimentos.getBackground().equals(new Color (0, 136, 237))) {
+        btnAlimentos.setForeground(new Color(0,136,237));
+        } else {
+            btnAlimentos.setForeground(new Color(76, 75, 86));
+        }
+    }//GEN-LAST:event_btnAlimentosMouseExited
+
+    private void btnDashboardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboardMouseExited
+        // TODO add your handling code here:
+        if(lblDash.getBackground().equals(new Color (0, 136, 237))) {
+        btnDashboard.setForeground(new Color(0,136,237));
+        } else {
+            btnDashboard.setForeground(new Color(76, 75, 86));
+        }
+    }//GEN-LAST:event_btnDashboardMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -1455,6 +1604,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField NomeC;
+    private javax.swing.JLabel btnAlimentos;
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnAtualizar1;
     private javax.swing.JLabel btnCardapio;
@@ -1486,7 +1636,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -1553,6 +1702,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel lblAlimentos;
+    private javax.swing.JLabel lblCardapio;
+    private javax.swing.JLabel lblCliente;
+    private javax.swing.JLabel lblDash;
     private javax.swing.JButton remove;
     private javax.swing.JPanel tCardapio;
     private javax.swing.JPanel tCliente;
