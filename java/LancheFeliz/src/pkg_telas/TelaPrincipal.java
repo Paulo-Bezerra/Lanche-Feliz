@@ -39,8 +39,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     DefaultTableModel modeloCardapioSamanal;
     DefaultTableModel modeloCliente;
     DefaultTableModel modeloAlimento;
-    DefaultTableModel modeloOpcao;
-    DefaultTableModel modeloSelecao;
+    DefaultTableModel modeloBusca;
+    int idBusca;
+    String descBusca;
     
     public TelaPrincipal() {
         initComponents();
@@ -48,9 +49,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         modeloCliente = (DefaultTableModel) jTable3.getModel();
         modeloCardapioSamanal = (DefaultTableModel) tblCardapioSemanal.getModel();
         modeloAlimento = (DefaultTableModel) jTable2.getModel();
-        modeloOpcao = (DefaultTableModel) jTable5.getModel();
-        modeloSelecao = (DefaultTableModel) jTable6.getModel();
-    }
+        modeloBusca = (DefaultTableModel) jTable5.getModel();               
+    }  
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -137,21 +138,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
         jTextArea4 = new javax.swing.JTextArea();
-        jLabel35 = new javax.swing.JLabel();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jScrollPane12 = new javax.swing.JScrollPane();
-        jTable6 = new javax.swing.JTable();
         jPanel13 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
-        jButton9 = new javax.swing.JButton();
         jTextField5 = new javax.swing.JTextField();
+        jButton10 = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable5 = new javax.swing.JTable();
+        jButton9 = new javax.swing.JButton();
         tEstoque = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
@@ -910,7 +904,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jPanel8.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 70, 110, 120));
 
-        tCardapio.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(416, 12, 590, 248));
+        tCardapio.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(416, 12, 590, 370));
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -927,7 +921,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel12.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 570, -1, -1));
+        jPanel12.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Source Sans Pro", 0, 12)); // NOI18N
         jLabel18.setText("Nome");
@@ -944,24 +938,35 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jPanel12.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 153, 372, 117));
 
-        jLabel35.setText("Alimentos");
-        jLabel35.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                jLabel35MouseMoved(evt);
+        tCardapio.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 12, 398, 370));
+
+        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel5.setFont(new java.awt.Font("Source Sans Pro", 0, 21)); // NOI18N
+        jLabel5.setText("Pesquisar");
+
+        jLabel6.setFont(new java.awt.Font("Source Sans Pro", 0, 18)); // NOI18N
+        jLabel6.setText("Digite o nome do cardápio  abaixo:");
+
+        jTextField5.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+        jButton10.setText("Buscar");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
             }
         });
-        jPanel12.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 288, 370, -1));
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "OPÇÕES"
+                "Id", "nome", "descricao"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -973,120 +978,70 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 jTable5MouseClicked(evt);
             }
         });
-        jScrollPane11.setViewportView(jTable5);
+        jScrollPane6.setViewportView(jTable5);
         if (jTable5.getColumnModel().getColumnCount() > 0) {
-            jTable5.getColumnModel().getColumn(0).setMinWidth(0);
-            jTable5.getColumnModel().getColumn(0).setPreferredWidth(0);
-            jTable5.getColumnModel().getColumn(0).setMaxWidth(0);
+            jTable5.getColumnModel().getColumn(0).setMinWidth(32);
+            jTable5.getColumnModel().getColumn(0).setPreferredWidth(32);
+            jTable5.getColumnModel().getColumn(0).setMaxWidth(32);
+            jTable5.getColumnModel().getColumn(1).setMinWidth(128);
+            jTable5.getColumnModel().getColumn(1).setPreferredWidth(128);
+            jTable5.getColumnModel().getColumn(1).setMaxWidth(128);
         }
 
-        jPanel12.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 309, 141, 233));
-
-        jButton10.setText("→");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        jButton9.setText("Detalhar");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                jButton9ActionPerformed(evt);
             }
         });
-        jPanel12.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, -1, -1));
-
-        jButton11.setText("←");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
-            }
-        });
-        jPanel12.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 510, -1, -1));
-
-        jTable6.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "SELEÇÃO"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable6MouseClicked(evt);
-            }
-        });
-        jScrollPane12.setViewportView(jTable6);
-
-        jPanel12.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(235, 309, 148, 233));
-
-        tCardapio.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 12, 398, 660));
-
-        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel5.setFont(new java.awt.Font("Source Sans Pro", 0, 21)); // NOI18N
-        jLabel5.setText("Atualizar cardápio");
-
-        jLabel6.setFont(new java.awt.Font("Source Sans Pro", 0, 12)); // NOI18N
-        jLabel6.setText("Nome");
-
-        jLabel22.setText("Descrição");
-
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane6.setViewportView(jTextArea3);
-
-        jButton9.setText("Atualizar");
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel22)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton9)
-                .addGap(144, 144, 144))
+                        .addGap(174, 174, 174)
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton9))
+                            .addGroup(jPanel13Layout.createSequentialGroup()
+                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton10))))
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(262, 262, 262)
+                        .addComponent(jLabel6)))
+                .addContainerGap(261, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel22))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton9))
                     .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
-        tCardapio.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, 580, 400));
+        tCardapio.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 400, 980, 270));
 
         telaPadrao.add(tCardapio, "telaCardapio");
 
@@ -1473,16 +1428,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         CadastroCardapio c =  new CadastroCardapio();
         c.CadastrarProduto(jTextField4.getText(), jTextArea4.getText());
         
-        
+        TelaAlimentoCardapio cad = new TelaAlimentoCardapio();
+        cad.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
-
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        modeloSelecao.addRow(new Object[] {modeloOpcao.getValueAt(jTable5.getSelectedRow(), jTable5.getSelectedColumn()).toString()});
-    }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         
@@ -1493,29 +1445,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             modeloAlimento.addRow(new Object [] {alimento.getId(), alimento.getNome(), alimento.getDescricao()});
         }
     }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jLabel35MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel35MouseMoved
-      
-        modeloOpcao.setNumRows(0);
-        CadastroAlimento c = new CadastroAlimento();
-        
-        for (Alimento alimento : c.Consultar()) {
-            Alimento a = new Alimento();
-            modeloOpcao.addRow(new Object [] {alimento.getNome()});
-            a.getId();
-        }
-    }//GEN-LAST:event_jLabel35MouseMoved
-
-    private void jTable5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable5MouseClicked
-    }//GEN-LAST:event_jTable5MouseClicked
-
-    private void jTable6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable6MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTable6MouseClicked
-
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        modeloSelecao.removeRow(jTable6.getSelectedRow());
-    }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
@@ -1567,6 +1496,28 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDashboardMouseExited
 
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        modeloBusca.setNumRows(0);
+        CadastroCardapio c = new CadastroCardapio();
+        
+        for (Cardapio cardapio : c.BuscarCardapio(jTextField5.getText())) {
+            modeloBusca.addRow(new Object [] {cardapio.getId(), cardapio.getNome(), cardapio.getDescricao()});
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        String str = modeloBusca.getValueAt(jTable5.getSelectedRow(), 0).toString();
+        String n = modeloBusca.getValueAt(jTable5.getSelectedRow(), 1).toString();
+        idBusca = Integer.parseInt(str);
+        TelaDetalheCardapio tela = new TelaDetalheCardapio(idBusca, n);
+        tela.setVisible(true);
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jTable5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable5MouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTable5MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1615,7 +1566,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField emailC;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1638,7 +1588,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
@@ -1651,7 +1600,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1677,8 +1625,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
-    private javax.swing.JScrollPane jScrollPane11;
-    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -1692,10 +1638,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
-    private javax.swing.JTable jTable6;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextArea jTextArea4;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;

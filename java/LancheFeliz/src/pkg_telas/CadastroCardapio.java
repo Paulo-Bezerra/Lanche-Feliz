@@ -129,4 +129,64 @@ public class CadastroCardapio extends Conexao {
         
         return ids;
     } 
+    
+        public int ultimoCardapio(){
+        int id = 0;
+        String sql = "SELECT id FROM cardapio";
+        ResultSet resultado;
+        
+        conectar();
+        
+        try {
+            resultado = estado.executeQuery(sql);
+            while (resultado.next()) {
+                
+                id = resultado.getInt("id");
+                
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao consultar");
+        }
+        
+        return id;
+    } 
+        
+        public ArrayList <Cardapio> BuscarCardapio(String var){
+        ArrayList <Cardapio> lista = new ArrayList();
+        String sql = "SELECT * FROM cardapio WHERE nome LIKE '" + var + "%'";
+        conectar();
+        ResultSet resultado;
+        
+        try {
+            resultado = estado.executeQuery(sql);
+            while (resultado.next()){
+                Cardapio c = new Cardapio();
+                c.setId(resultado.getInt("id"));
+                c.setNome(resultado.getString("nome"));
+                lista.add(c);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar");
+        }
+        return lista;
+    }
+        public Cardapio DetalharCardapio (int var) {
+            Cardapio c = new Cardapio();
+            String sql = "SELECT * FROM cardapio WHERE id = " + var;
+            
+            conectar();
+            ResultSet resultado;
+            
+        try {
+            resultado = estado.executeQuery(sql);
+            c.setId(resultado.getInt("id"));
+            c.setNome(resultado.getString("nome"));
+            c.setDescricao(resultado.getString("descricao"));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, c.getNome());
+        }
+            
+            return c;
+        }
+
 }
