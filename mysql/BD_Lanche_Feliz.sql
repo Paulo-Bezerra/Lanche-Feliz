@@ -1,4 +1,6 @@
-CREATE DATABASE bar;
+CREATE DATABASE bar
+DEFAULT CHARACTER SET utf8
+DEFAULT COLLATE utf8_general_ci;
 
 USE bar;
 
@@ -6,13 +8,13 @@ CREATE TABLE alimento (
 	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     nome VARCHAR (30),
 	descricao TEXT
-);
+)DEFAULT CHARSET = utf8;
 
 CREATE TABLE cardapio (  
 	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 	nome VARCHAR (30),
 	descricao TEXT
-);
+)DEFAULT CHARSET = utf8;
 
 CREATE TABLE alim_card (  
 	id_alimento  INT,  
@@ -20,7 +22,7 @@ CREATE TABLE alim_card (
 	PRIMARY KEY (id_alimento, id_cardapio),  
 	FOREIGN KEY (id_alimento) REFERENCES alimento (id),  
 	FOREIGN KEY (id_cardapio) REFERENCES cardapio (id) 
-);
+)DEFAULT CHARSET = utf8;
 
 CREATE TABLE cliente(
 	cpf VARCHAR (14) NOT NULL,
@@ -29,7 +31,7 @@ CREATE TABLE cliente(
     id_cardapio INT,
 	PRIMARY KEY (cpf),
     FOREIGN KEY (id_cardapio) REFERENCES cardapio (id)
-);
+)DEFAULT CHARSET = utf8;
 
 INSERT INTO cardapio (id,nome) VALUES 
 (DEFAULT, 'Macarronada'),
@@ -97,8 +99,14 @@ SELECT * FROM cliente;
 
 SELECT cardapio.id, cardapio.nome, cardapio.descricao, selecao.quantidade FROM cardapio, (SELECT id, COUNT(id) AS quantidade FROM cliente INNER JOIN cardapio ON cardapio.id = cliente.id_cardapio GROUP BY id ORDER BY COUNT(id) DESC LIMIT  5) AS selecao WHERE cardapio.id = selecao.id;
 
+SELECT cardapio.nome AS cardapios, alimento.nome AS Alimento FROM cardapio, alimento, alim_card WHERE alimento.id = id_alimento AND cardapio.id = id_cardapio;
 
-delete from cardapio where id = 9;
+SELECT * FROM cardapio WHERE id = 28;
 
+SELECT alimento.nome AS alimento FROM cardapio, alimento, alim_card WHERE alimento.id = id_alimento AND cardapio.id = id_cardapio AND id_cardapio = 28;
 
-SELECT id FROM cardapio;
+SELECT alimento.nome FROM alimento, (SELECT id_alimento AS id FROM alim_card  WHERE id_cardapio = 28) AS selecao WHERE alimento.id = selecao.id;
+
+DELETE FROM cardapio WHERE id = 9;
+
+DELETE FROM alim_card WHERE  id_cardapio =  1 AND id_alimento = 3;

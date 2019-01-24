@@ -1,5 +1,18 @@
 USE bar;
 
+INSERT INTO alimento (id,nome, descricao) VALUES 
+(DEFAULT, 'Macarrão', 'comida'),
+(DEFAULT, 'Arroz', 'comida'),
+(DEFAULT, 'Feijão', 'comida'),
+(DEFAULT, 'Carne de Gado', 'comida'),
+(DEFAULT, 'Galinha', 'comida'),
+(DEFAULT, 'Frango', 'comida'),
+(DEFAULT, 'Cuzcus', 'comida'),
+(DEFAULT, 'Farinha', 'comida'),
+(DEFAULT, 'isso', 'comida'),
+(DEFAULT, 'Agua', 'comida'),
+(DEFAULT, 'Fruta', 'comida');
+
 INSERT INTO cardapio (id,nome) VALUES 
 (DEFAULT, 'Macarronada'),
 (DEFAULT, 'Feijoada'),
