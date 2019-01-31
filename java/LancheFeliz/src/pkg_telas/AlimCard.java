@@ -35,7 +35,7 @@ public class AlimCard extends Conexao {
         String sql = "DELETE FROM alim_card WHERE  id_cardapio = ? AND id_alimento = ?";
         PreparedStatement estado1;
         conectar();
-
+ 
         try {
             estado1 = conexao.prepareStatement(sql);
             estado1.setInt(1, id_cardapio);
@@ -48,7 +48,9 @@ public class AlimCard extends Conexao {
     
     public ArrayList <String> consultar (int id) {
         ArrayList <String> lista = new ArrayList();
-        String sql = "SELECT alimento.nome FROM alimento, (SELECT id_alimento AS id FROM alim_card  WHERE id_cardapio = " + id + ") AS selecao WHERE alimento.id = selecao.id";
+        String sql = "SELECT alimento.nome FROM alimento, "
+                + "(SELECT id_alimento AS id FROM alim_card  WHERE id_cardapio = " + id + ") AS selecao "
+                + "WHERE alimento.id = selecao.id";
         conectar();
         ResultSet resultado;
         
